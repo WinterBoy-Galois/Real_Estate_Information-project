@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -66,6 +67,12 @@ public class MemberController {
 		int res = memberService.register(userDto);
 		
 		return res;
+	}
+	
+	@GetMapping("/dup/{email}")
+	public @ResponseBody MemberDto dup(@PathVariable String email) {
+		MemberDto dto = memberService.dup(email);
+		return dto;
 	}
 	
 	

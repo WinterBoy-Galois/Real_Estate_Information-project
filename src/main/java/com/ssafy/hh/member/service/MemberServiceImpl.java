@@ -33,5 +33,11 @@ public class MemberServiceImpl implements MemberService{
 
 	}
 
+	@Override
+	public MemberDto dup(String email) {
+		return memberMapper.dup(email);
+	}
+
+	
 
 }

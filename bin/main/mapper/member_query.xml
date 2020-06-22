@@ -11,12 +11,12 @@
 		select * from happyhouse_member where password = #{password} and email = #{email}
 	</select>
 	
-	<delete id="delete">
+<!-- 	<delete id="delete">
 		DELETE FROM happyhouse_member where id = #{id} and password = #{password}
-	</delete>
+	</delete> -->
 	
 
-	<update id="modify"	parameterType="com.ssafy.hh.member.dto.MemberDto" >
+<!-- 	<update id="modify"	parameterType="com.ssafy.hh.member.dto.MemberDto" >
 		update 	happyhouse_member 
 		   set 	password	= #{password}
 				,name	= #{name}
@@ -25,8 +25,11 @@
 				,question = #{question}
 				,answer = #{answer}
 		 where id = #{id}
-	</update>
+	</update> -->
 	 
+	<select id="dup" resultType="com.ssafy.hh.member.dto.MemberDto">
+		select * from happyhouse_member where email = #{email}
+	</select>
 </mapper>
 
 

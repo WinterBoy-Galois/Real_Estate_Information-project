@@ -15,4 +15,6 @@ public interface MemberMapper {
 	public void delete(MemberDto userDto);
 
 	public int modify(MemberDto dto);
+
+	public MemberDto dup(String email);
 }

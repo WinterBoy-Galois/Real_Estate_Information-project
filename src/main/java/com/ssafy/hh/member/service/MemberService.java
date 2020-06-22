@@ -7,5 +7,6 @@ public interface MemberService {
 	int register(MemberDto userDto);
 	void delete(MemberDto userDto);
 	public int modify(MemberDto dto);
+	public MemberDto dup(String email);
 
 }
