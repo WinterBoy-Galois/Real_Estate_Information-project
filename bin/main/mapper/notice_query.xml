@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.hh.notice.mapper.NoticeMapper">
+
+	<select id="list" resultType="com.ssafy.hh.notice.dto.NoticeDto">
+		select * from notice order by noticeId desc;
+	</select>
+	
+	<select id="search" resultType="com.ssafy.hh.notice.dto.NoticeDto">
+		select * from notice where title like CONCAT('%', #{find}, '%') order by noticeId;
+	</select>
+
+	<insert id="insert" parameterType="com.ssafy.hh.notice.dto.NoticeDto">
+		insert into notice ( title, content, userName, regDt, readCount) 
+		             values ( #{title}, #{content}, #{userName}, now(), #{readCount})
+	</insert>
+	
+	<select id="detail" resultType="com.ssafy.hh.notice.dto.NoticeDto">
+		select * from notice where noticeId = #{id}
+	</select>
+	
+	<delete id="delete" >
+		delete from notice where noticeId = #{id}
+	</delete>
+	
+	<update id="update" parameterType="com.ssafy.hh.notice.dto.NoticeDto">
+		update notice 
+		set title = #{title},
+		content = #{content}
+		where noticeId = #{noticeId}
+	</update>
+	
+	
+</mapper>
+
