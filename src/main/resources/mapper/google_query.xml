@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.hh.google.mapper.GoogleMapMapper">
+
+	<select id="google" resultType="com.ssafy.hh.google.dto.LocationDto">
+		select dong, aptName, lat, lng from houseinfo where trim(dong) like CONCAT('%', #{dong}, '%')
+	</select>
+	
+	<select id="selectDoeList" resultType="string">
+		select sido_name from sidocode order by sido_name
+	</select>
+	<select id="selectSiList" resultType="string">
+		select gugun_name from guguncode order by gugun_name
+	</select>
+	<select id="selectDongList" resultType="string">
+		select dong from dongcode order by dong
+	</select>
+	
+	<select id="selectSiListByDoe" resultType="string">
+		select distinct gugun from dongcode where city like CONCAT('%', #{doe}, '%') order by gugun
+	</select>
+	<select id="selectDongListByDoe" resultType="string">
+		select distinct dong from dongcode where city like CONCAT('%', #{doe}, '%') order by dong
+	</select>
+
+	<select id="selectDongListBySi" resultType="string">
+		select distinct dong from dongcode where gugun like CONCAT('%', #{si}, '%') order by dong
+	</select>
+	
+	<select id="detail" parameterType="map" resultType="com.ssafy.hh.house.dto.HouseDto">
+		select * from housedeal where trim(AptName) like CONCAT('%', #{aptName}, '%') and dong like CONCAT('%', #{dong}, '%')
+	</select>
+	
+	<select id="pos" resultType="com.ssafy.hh.house.dto.HouseInfoDto">
+		select * from houseinfo where dong like CONCAT('%', #{dong}, '%')
+	</select>
+	
+	
+</mapper>

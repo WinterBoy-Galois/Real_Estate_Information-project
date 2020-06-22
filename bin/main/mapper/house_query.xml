@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.hh.house.mapper.HouseMapper">
+
+	<select id="list" resultType="com.ssafy.hh.house.dto.HouseDto">
+		select *, i.img as imgurl from housedeal d right join houseinfo i on d.aptname = i.aptname where i.img is not null limit 20
+	</select>
+	
+	<select id="detail" resultType="com.ssafy.hh.house.dto.HouseDto">
+		select *, i.img as imgurl from housedeal d right join houseinfo i on d.aptname = i.aptname where d.no = #{id} limit 1;
+	</select>
+	
+	<select id="near" resultType="com.ssafy.hh.house.dto.HouseNearInfoDto">
+		select * from housebd where dong like CONCAT('%', #{dong}, '%') limit 5;
+	</select>
+	
+	<select id="green" resultType="com.ssafy.hh.house.dto.HouseGreenInfoDto">
+		select * from greeninfo where address like CONCAT('%', #{dong}, '%') limit 5;
+	</select>	
+	
+	<select id="listForDong" resultType="com.ssafy.hh.house.dto.HouseDto">
+		select *, i.img as imgurl from housedeal d right join houseinfo i 
+		on d.aptname = i.aptname 
+		where 
+		d.dong like CONCAT('%', #{text}, '%')
+		limit 20
+	</select>	
+
+	<select id="listForAptName" resultType="com.ssafy.hh.house.dto.HouseDto">
+		select * from housedeal where AptName like CONCAT('%', #{text}, '%') limit 20
+	</select>	
+
+	<select id="listForPrice" resultType="com.ssafy.hh.house.dto.HouseDto">
+		 select * from housedeal where cast(dealAmount as signed) <![CDATA[<=]]> #{text} order by dealAmount limit 10	
+	</select>	
+		
+</mapper>
+

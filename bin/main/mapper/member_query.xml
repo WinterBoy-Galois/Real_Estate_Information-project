@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ssafy.hh.member.mapper.MemberMapper">
+
+	<insert id="register" >
+        insert into happyhouse_member (password, name, email)
+        values (#{password}, #{name}, #{email})
+    </insert>
+    
+	<select id="login" parameterType="map" resultType="com.ssafy.hh.member.dto.MemberDto">
+		select * from happyhouse_member where password = #{password} and email = #{email}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM happyhouse_member where id = #{id} and password = #{password}
+	</delete>
+	
+
+	<update id="modify"	parameterType="com.ssafy.hh.member.dto.MemberDto" >
+		update 	happyhouse_member 
+		   set 	password	= #{password}
+				,name	= #{name}
+				,address = #{address}
+				,phone = #{phone}
+				,question = #{question}
+				,answer = #{answer}
+		 where id = #{id}
+	</update>
+	 
+</mapper>
+
+
